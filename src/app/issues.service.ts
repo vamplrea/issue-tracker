@@ -13,7 +13,6 @@ export class IssuesService implements OnInit {
   }
   createIssue(issue: Issue) {
     issue.issueNo = this.issues.length + 1;
-
     this.issues.push(issue);
   }
   ngOnInit(): void {
@@ -24,9 +23,13 @@ export class IssuesService implements OnInit {
       ...issue,
       completed: new Date(),
     };
-
     const index = this.issues.findIndex((i) => i === issue);
-
     this.issues[index] = selectedIssue;
+  }
+  getSuggestions(title: string): Issue[] {
+    if (title.length > 3) {
+      return this.issues.filter((issue) => issue.title.indexOf(title) !== -1);
+    }
+    return [];
   }
 }
