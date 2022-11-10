@@ -28,6 +28,7 @@ export class IssueReportComponent implements OnInit {
       priority: ['', Validators.required],
       type: ['', Validators.required],
     });
+    //get update of input to show suggestion
     this.issueForm.controls?.['title'].valueChanges.subscribe(
       (title: string) => {
         this.suggestions = this.issueService.getSuggestions(title);
